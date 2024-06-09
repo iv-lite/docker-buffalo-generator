@@ -17,8 +17,12 @@ repository="git@github.com:iv-lite/docker-boilerplates-buffalo.git"
 git clone ${repository} storage/.engine
 
 location="$(cd $(dirname $0) && pwd)"
-
 destination="$(realpath $2)/"
+flags=""
+while [ -n $3 ]; do
+    flags+=" $3"
+    shift
+done
 
 cp .env.engine "${location}/storage/.engine/docker/.env"
 cd storage/.engine/docker
