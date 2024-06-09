@@ -18,6 +18,7 @@ git clone ${repository} storage/.engine
 
 location="$(cd $(dirname $0) && pwd)"
 destination="$(realpath $2)/"
+name=$1
 flags=""
 while [ -n $3 ]; do
     flags+=" $3"
@@ -26,6 +27,6 @@ done
 
 cp .env.engine "${location}/storage/.engine/docker/.env"
 cd storage/.engine/docker
-bash tools/init.sh $1
+bash tools/init.sh $name "${flags}"
 
-mv ${location}/storage/.engine "${destination}/$1"
+mv ${location}/storage/.engine "${destination}/${name}"
